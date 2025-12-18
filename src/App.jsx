@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./screens/Home";
 import CreateInformationAccueil from "./screens/CreateInformationAccueil";
 import InformationsAccueilAdmin from "./screens/InformationsAccueilAdmin";
+import Timeline from "./components/Timeline";
 <Route path="/creer-info" element={<CreateInformationAccueil />} />
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/creer-info" element={<CreateInformationAccueil />} />
           <Route path="/gestion-infos" element={<InformationsAccueilAdmin />} />
+          <Timeline />
         </Routes>
     </BrowserRouter>
   );
