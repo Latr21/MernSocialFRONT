@@ -12,7 +12,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/creer-info" element={<CreateInformationAccueil />} />
           <Route path="/gestion-infos" element={<InformationsAccueilAdmin />} />
-          <Timeline />
+          <Route path="/Timeline" element={<Timeline />} />
         </Routes>
     </BrowserRouter>
   );
