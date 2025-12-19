@@ -1,21 +1,28 @@
 import React from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+
 import Home from "./screens/Home";
 import CreateInformationAccueil from "./screens/CreateInformationAccueil";
 import InformationsAccueilAdmin from "./screens/InformationsAccueilAdmin";
 import Timeline from "./components/Timeline";
-<Route path="/creer-info" element={<CreateInformationAccueil />} />
-const App = () => {
-  return (
-    <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/creer-info" element={<CreateInformationAccueil />} />
-          <Route path="/gestion-infos" element={<InformationsAccueilAdmin />} />
-          <Route path="/Timeline" element={<Timeline />} />
-        </Routes>
-    </BrowserRouter>
-  );
-};
 
-export default App;
+import SignInPage from "./pages/SignInPage.jsx";
+import SignUpPage from "./pages/SignUpPage.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Navigate to="/sign-in" replace />} />
+      <Route path="/creer-info" element={<CreateInformationAccueil />} />
+      <Route path="/gestion-infos" element={<InformationsAccueilAdmin />} />
+      <Route path="/timeline" element={<Timeline />} />
+
+      <Route path="/sign-in" element={<SignInPage />} />
+      <Route path="/sign-up" element={<SignUpPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
+
+      <Route path="*" element={<Navigate to="/sign-in" replace />} />
+    </Routes>
+  );
+}
