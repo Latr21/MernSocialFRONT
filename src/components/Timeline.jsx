@@ -43,16 +43,15 @@ const Timeline = () => {
         <textarea
           value={newPostContent}
           onChange={(e) => setNewPostContent(e.target.value)}
-          placeholder="VOTRE POST ICI"
+          placeholder="test place holder text"
           required
         />
-        <input type="file" accept="image/*" onChange={(e) => setNewPostImage(e.target.files[0])} />
+        <input type="file" accept="image/*" onChange={(e) => setNewPostImage(e.target.files[0])} /> 
         <button type="submit">Poster</button>
       </form>
 
-      {loading ? (
-        <p>Chargement...</p>
-      ) : (
+      {loading ? (<p>Chargement...</p>) : 
+        (
         posts.map((post) => <Post key={post._id} post={post} loadPosts={loadPosts} />)
       )}
     </div>
