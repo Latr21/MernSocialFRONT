@@ -1,14 +1,5 @@
-const BASE_URL = "http://localhost:3000";
-
-async function handleResponse(res) {
-  const text = await res.text();
-  try {
-    return JSON.parse(text);
-  } catch {
-    throw new Error(`Réponse non JSON (${res.status}) : ${text.slice(0, 150)}`);
-  }
-}
-
+const API_URL = "http://localhost:3000/posts";
+//envoyer requests posts get delete
 export const fetchPosts = async () => {
   const res = await fetch(`${BASE_URL}/posts`);
   if (!res.ok) throw new Error(`GET /posts -> ${res.status}`);

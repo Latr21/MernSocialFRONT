@@ -15,7 +15,7 @@ const Post = ({ post, loadPosts }) => {
   };
 
   const handleDeletePost = async () => {
-    if (window.confirm("TEST MESSAGE WINDOWS : SUPPRRIMER CE POST??")) {
+    if (window.confirm("TEST MESSAGE WINDOWS : SUPPRRIMER CE POST??")) { //marche bien
       const data = await deletePost(post._id);
       if (!data.error) loadPosts();
       else alert(data.message);
@@ -48,7 +48,7 @@ const Post = ({ post, loadPosts }) => {
         <form onSubmit={handleAddComment}>
           <input
             type="text"
-            placeholder="Ajouter un commentaire"
+            placeholder="ajouter votre commentiare ici"
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
           />
