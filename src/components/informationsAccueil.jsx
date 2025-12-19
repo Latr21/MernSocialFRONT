@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { recupererInformationsAccueil } from "../services/informationsAccueil.api";
 
 export default function InformationsAccueil() {
@@ -19,7 +19,7 @@ export default function InformationsAccueil() {
   return (
     <div>
       {infos.map((info) => (
-        <div key={info.id}>
+        <div key={info._id}>
           {info.image_url && (
             <img
               src={`http://localhost:3000${info.image_url}`}
