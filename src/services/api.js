@@ -1,4 +1,5 @@
 const API_URL = "http://localhost:3000/posts";
+const BASE_URL = "http://localhost:3000";
 //envoyer requests posts get delete
 export const fetchPosts = async () => {
   const res = await fetch(`${BASE_URL}/posts`);
