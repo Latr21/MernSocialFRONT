@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { getMe, getUserPosts } from "../api/userApi";
-import React from "react";
-
-import { useEffect, useState } from "react";
-import { getMe } from "../api/userApi";
 
 export default function ProfilePage() {
   const [user, setUser] = useState(null);

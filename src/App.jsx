@@ -1,6 +1,4 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import React from "react";
 import { Routes, Route, Navigate, NavLink, useLocation } from "react-router-dom";
 
 import Home from "./screens/Home";
