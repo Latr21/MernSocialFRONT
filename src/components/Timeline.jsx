@@ -3,38 +3,50 @@ import Post from "./Post";
 import { fetchPosts, createPost } from "../services/api";
 
 const Timeline = () => {
+  console.log(" TEST TIME LINE CHARGEMENET")
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [newPostContent, setNewPostContent] = useState("");
   const [newPostImage, setNewPostImage] = useState(null);
-
-  const loadPosts = async () => {
-    setLoading(true);
-    const data = await fetchPosts();
-    if (!data.error) setPosts(data.data);
-    setLoading(false);
-  };
-
   useEffect(() => {
+    console.log("useeffect test");
     loadPosts();
   }, []);
+const loadPosts = async () => {
+  console.log(" loadPosts TEST ")
+  setLoading(true);
+  try {
+    const data = await fetchPosts();
+    
+    if (!data.error) setPosts(data.data);
+  } catch (error) {
+    console.error("Erreur loadPosts:", error);
+  }
+  setLoading(false);
+};
 
-  const handleCreatePost = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("author", "Moi");
-    formData.append("content", newPostContent);
-    if (newPostImage) formData.append("image", newPostImage);
+const handleCreatePost = async (e) => {
+  e.preventDefault();
 
-    const data = await createPost(formData);
+  try {
+    const data = await createPost({
+      author: "Moi",//eventuellement faire lien avec user
+      content: newPostContent,
+      image: newPostImage,
+    });
+
+    console.log("reponse createPost:", data);
+
     if (!data.error) {
       setNewPostContent("");
       setNewPostImage(null);
       loadPosts();
-    } else {
-      alert(data.message);
     }
-  };
+  } catch (error) {
+    console.error("Erreur:", error.message);
+    alert(error.message);
+  }
+};
 
   return (
     <div>

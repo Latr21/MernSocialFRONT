@@ -1,19 +1,29 @@
-const API_URL = "http://localhost:3000/posts";
 const BASE_URL = "http://localhost:3000";
-//envoyer requests posts get delete
+
 export const fetchPosts = async () => {
   const res = await fetch(`${BASE_URL}/posts`);
   if (!res.ok) throw new Error(`GET /posts -> ${res.status}`);
-  return handleResponse(res);
+  return res.json();
 };
 
-export const createPost = async (formData) => {
+export const createPost = async ({ author, content, image }) => {
+  const formData = new FormData();
+  formData.append("author", author);
+  formData.append("content", content);
+  if (image) formData.append("image", image);
+
   const res = await fetch(`${BASE_URL}/posts`, {
     method: "POST",
     body: formData,
   });
-  if (!res.ok) throw new Error(`POST /posts -> ${res.status}`);
-  return handleResponse(res);
+  
+  const data = await res.json();
+  
+  if (!res.ok) {
+    throw new Error(data.message || `POST /posts -> ${res.status}`);
+  }
+  
+  return data;
 };
 
 export const deletePost = async (postId) => {
@@ -21,7 +31,7 @@ export const deletePost = async (postId) => {
     method: "DELETE",
   });
   if (!res.ok) throw new Error(`DELETE /posts/${postId} -> ${res.status}`);
-  return handleResponse(res);
+  return res.json();
 };
 
 export const addComment = async (postId, comment) => {
@@ -31,14 +41,13 @@ export const addComment = async (postId, comment) => {
     body: JSON.stringify(comment),
   });
   if (!res.ok) throw new Error(`POST comment -> ${res.status}`);
-  return handleResponse(res);
+  return res.json();
 };
 
 export const deleteComment = async (postId, commentId) => {
-  const res = await fetch(
-    `${BASE_URL}/posts/${postId}/comments/${commentId}`,
-    { method: "DELETE" }
-  );
+  const res = await fetch(`${BASE_URL}/posts/${postId}/comments/${commentId}`, {
+    method: "DELETE",
+  });
   if (!res.ok) throw new Error(`DELETE comment -> ${res.status}`);
-  return handleResponse(res);
+  return res.json();
 };
