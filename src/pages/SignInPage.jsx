@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function SignInPage() {
@@ -26,7 +25,6 @@ export default function SignInPage() {
       }
 
       localStorage.setItem("token", data.data.token);
-
       navigate("/profile");
     } catch (err) {
       setError(err.message);
